@@ -6,7 +6,7 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/14 19:01:32 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/16 18:39:30 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,10 @@ HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L"/Users/abmahfou/.brew/Cellar/glfw/3.4/lib" -pthread -lm
 SRCS	:= so_long.c \
 		   get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-		   utils.c \
+		   ft_free.c \
 		   ft_split.c \
-		   errors.c
+		   errors.c \
+		   utils.c
 
 PRINTF = printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
