@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/15 10:30:00 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/14 16:10:38 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:16:06 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		str[i++] = s2[j++];
 	str[i] = '\0';
+	free(s1);
 	return (str);
 }
 
