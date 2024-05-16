@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/14 20:05:49 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/16 18:39:01 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@
 
 typedef struct s_solong
 {
-	int	space;
-	int	collectible;
-	int	exit;
-	int	player;
+	char	**map;
+	char	*line;
+	char	*str;
+	int		space;
+	int		collectible;
+	int		exit;
+	int		player;
+	int		x;
+	int		y;
 }	t_solong;
 
 bool	check_extension(char *arg);
@@ -37,5 +42,9 @@ bool	check_walls(char **map);
 void	_check(char *map);
 void	print_err(void);
 int		arr_len(char **arr);
+void	free_arr(char **split);
+void	ft_exit(char *s);
+void	flood_fill(char **map, int x, int y);
+void	player_pos(char **map);
 
 #endif
