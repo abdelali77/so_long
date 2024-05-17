@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/16 16:10:26 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:15:44 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,32 +84,31 @@ bool	check_walls(char **map)
 	return (true);
 }
 
-void	_check(char *map)
+void	_check(t_solong *game)
 {
-	int			i;
-	t_solong	p;
+	int	i;
 
-	if (!map)
+	if (!game->str)
 		return ;
-	p.collectible = 0;
-	p.exit = 0;
-	p.player = 0;
+	game->collectible = 0;
+	game->exit = 0;
+	game->player = 0;
 	i = 0;
-	while (map[i] != '\0')
+	while (game->str[i] != '\0')
 	{
-		if (map[i] == 'C')
-			p.collectible++;
-		else if (map[i] == 'E')
-			p.exit++;
-		else if (map[i] == 'P')
-			p.player++;
-		if (map[0] == '\n' || (map[i] == '\n' && map[i + 1] == '\n'))
-			ft_exit(map);
-		else if (map[i] != '1' && map[i] != '0' && map[i] != 'C'
-			&& map[i] != 'E' && map[i] != 'P' && map[i] != '\n')
-			ft_exit(map);
+		if (game->str[i] == 'C')
+			game->collectible++;
+		else if (game->str[i] == 'E')
+			game->exit++;
+		else if (game->str[i] == 'P')
+			game->player++;
+		if (game->str[0] == '\n' || (game->str[i] == '\n' && game->str[i + 1] == '\n'))
+			ft_exit(game->str);
+		else if (game->str[i] != '1' && game->str[i] != '0' && game->str[i] != 'C'
+			&& game->str[i] != 'E' && game->str[i] != 'P' && game->str[i] != '\n')
+			ft_exit(game->str);
 		i++;
 	}
-	if (!(p.collectible >= 1 && p.exit == 1 && p.player == 1))
-		ft_exit(map);
+	if (!(game->collectible >= 1 && game->exit == 1 && game->player == 1))
+		ft_exit(game->str);
 }
