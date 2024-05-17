@@ -6,16 +6,18 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/16 18:39:30 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/17 18:50:54 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= so_long
 CFLAGS	:= -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	:= ./MLX42
+YELLOW=\033[1;33m
+NC=\033[0m
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
-LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -L"/Users/abmahfou/.brew/Cellar/glfw/3.4/lib" -pthread -lm
+LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= so_long.c \
 		   get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
 		   ft_free.c \
@@ -38,12 +40,12 @@ $(NAME): $(OBJS)
 	make -C printf
 	$(CC) $(OBJS) $(LIBS) $(PRINTF) $(LIBFT) $(HEADERS) -o $(NAME)
 	@echo "                                                             "
-	@echo "███████╗ ██████╗         ██╗      ██████╗ ███╗   ██╗ ██████╗ "
-	@echo "██╔════╝██╔═══██╗        ██║     ██╔═══██╗████╗  ██║██╔════╝ "
-	@echo "███████╗██║   ██║        ██║     ██║   ██║██╔██╗ ██║██║  ███╗"
-	@echo "╚════██║██║   ██║        ██║     ██║   ██║██║╚██╗██║██║   ██║"
-	@echo "███████║╚██████╔╝███████╗███████╗╚██████╔╝██║ ╚████║╚██████╔╝"
-	@echo "╚══════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ "
+	@echo "$(YELLOW)███████╗ ██████╗         ██╗      ██████╗ ███╗   ██╗ ██████╗ $(NC)"
+	@echo "$(YELLOW)██╔════╝██╔═══██╗        ██║     ██╔═══██╗████╗  ██║██╔════╝ $(NC)"
+	@echo "$(YELLOW)███████╗██║   ██║        ██║     ██║   ██║██╔██╗ ██║██║  ███╗$(NC)"
+	@echo "$(YELLOW)╚════██║██║   ██║        ██║     ██║   ██║██║╚██╗██║██║   ██║$(NC)"
+	@echo "$(YELLOW)███████║╚██████╔╝███████╗███████╗╚██████╔╝██║ ╚████║╚██████╔╝$(NC)"
+	@echo "$(YELLOW)╚══════╝ ╚═════╝ ╚══════╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ $(NC)"
 	@echo "                                                             "
 
 clean:
