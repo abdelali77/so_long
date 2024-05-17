@@ -6,23 +6,11 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:48:05 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/16 16:13:51 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:14:26 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	arr_len(char **arr)
-{
-	int	i;
-
-	if (!arr)
-		return (0);
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 void	free_arr(char **split)
 {

@@ -6,15 +6,26 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:49:38 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/16 19:59:52 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/17 18:56:28 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	player_pos(char **map)
+int	arr_len(char **arr)
 {
-	t_solong	st;
+	int	i;
+
+	if (!arr)
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+void	player_pos(char **map, t_solong *game)
+{
 	int	i;
 	int	j;
 
@@ -26,18 +37,35 @@ void	player_pos(char **map)
 		{
 			if (map[i][j] == 'P')
 			{
-				st.x = j;
-				st.y = i;
+				game->x = j;
+				game->y = i;
 			}
 			j++;
 		}
 		i++;	
 	}
-	ft_printf("%d %d\n", st.x, st.y);
 }
 
-/* void	flood_fill(char **map, int x, int y)
+void	flood_check(t_solong *game, int	c, int e)
 {
-	if (map[x][y] == '1')
+	if (c != game->collectible || e != game->exit)
+	{
+		ft_printf("Invalid path!\n");
+		exit(1);
+	}
+}
+
+void	flood_fill(t_solong *game, int x, int y)
+{
+	if (game->map[y][x] == '1')
 		return ;
-} */
+	if (game->map[y][x] == 'C')
+		game->c++;
+	if (game->map[y][x] == 'E')
+		game->e++;
+	game->map[y][x] = '1';
+	flood_fill(game, x + 1, y);
+	flood_fill(game, x - 1, y);
+	flood_fill(game, x, y + 1);
+	flood_fill(game, x, y - 1);
+}
