@@ -6,7 +6,7 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/17 18:50:54 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/18 10:13:15 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,8 @@ SRCS	:= so_long.c \
 		   ft_free.c \
 		   ft_split.c \
 		   errors.c \
-		   utils.c
+		   utils.c \
+		   game.c
 
 PRINTF = printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
