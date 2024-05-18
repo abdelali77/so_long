@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/17 19:15:44 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:35:49 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,27 @@ bool	check_extension(char *arg)
 		return (false);
 }
 
-void	check_len(char **map)
+void	check_len(t_solong *game)
 {
 	int		i;
 	size_t	len;
 
-	if (!map)
+	if (!game->map)
 		return ;
 	i = 0;
-	len = ft_strlen(map[i]);
-	while (map[i])
+	len = ft_strlen(game->map[i]);
+	game->width = len;
+	while (game->map[i])
 	{
-		if (ft_strlen(map[i]) != len)
+		if (ft_strlen(game->map[i]) != len)
 		{
 			ft_printf("Error, map is not rectangular\n");
-			free_arr(map);
+			free_arr(game->map);
 			exit(1);
 		}
 		i++;
 	}
+	game->height = i;
 }
 
 bool	check_walls(char **map)

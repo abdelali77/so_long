@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:49:38 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/17 18:56:28 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/18 16:38:18 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,25 @@ int	arr_len(char **arr)
 	return (i);
 }
 
-void	player_pos(char **map, t_solong *game)
+void	player_pos(t_solong *game)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (map[i])
+	while (game->map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (game->map[i][j])
 		{
-			if (map[i][j] == 'P')
+			if (game->map[i][j] == 'P')
 			{
 				game->x = j;
 				game->y = i;
 			}
 			j++;
 		}
-		i++;	
+		i++;
 	}
 }
 
