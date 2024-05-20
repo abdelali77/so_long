@@ -6,13 +6,13 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/18 16:35:49 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/18 22:53:18 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_err()
+void	print_err(void)
 {
 	ft_printf("Error\n");
 	exit(1);
