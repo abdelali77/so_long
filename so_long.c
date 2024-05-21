@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/18 16:49:31 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/20 17:36:40 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,18 @@ int	main(int ac, char **av)
 {
 	// atexit(leaks);
 	t_solong	*game;
+	t_textures	*textures;
 
 	if (ac == 2)
 	{
 		game = malloc(sizeof(t_solong));
+		textures = malloc(sizeof(t_textures));
 		if (!check_extension(av[1]))
 			print_err();
 		read_map(av[1], game);
-		game_init(game);
+		game_init(game, textures);
 		free(game);
+		free(textures);
 	}
 	else
 		ft_printf("Usage: ./so_long *.ber\n");
