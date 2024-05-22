@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/18 22:53:18 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/22 10:29:19 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	_check(t_solong *game)
 		return ;
 	game->collectible = 0;
 	game->exit = 0;
-	game->player = 0;
+	game->p = 0;
 	i = 0;
 	while (game->str[i] != '\0')
 	{
@@ -103,7 +103,7 @@ void	_check(t_solong *game)
 		else if (game->str[i] == 'E')
 			game->exit++;
 		else if (game->str[i] == 'P')
-			game->player++;
+			game->p++;
 		if (game->str[0] == '\n' || (game->str[i] == '\n' && game->str[i + 1] == '\n'))
 			ft_exit(game->str);
 		else if (game->str[i] != '1' && game->str[i] != '0' && game->str[i] != 'C'
@@ -111,6 +111,6 @@ void	_check(t_solong *game)
 			ft_exit(game->str);
 		i++;
 	}
-	if (!(game->collectible >= 1 && game->exit == 1 && game->player == 1))
+	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1))
 		ft_exit(game->str);
 }
