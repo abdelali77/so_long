@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/21 13:27:51 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/22 12:54:49 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,25 @@
 # include "./get_next_line/get_next_line.h"
 # include "./MLX42/include/MLX42/MLX42.h"
 
-typedef struct s_textures
+typedef struct s_solong
 {
+	void			*mlx_ptr;
+	char			**map;
+	char			*line;
+	char			*str;
+	mlx_image_t		*marshall;
+	int				collectible;
+	int				e;
+	int				c;
+	int				exit;
+	int				p;
+	int				width;
+	int				height;
+	int				x;
+	int				y;
+	int				ship_x;
+	int				ship_y;
+	int				moves;
 	mlx_texture_t	*fruit;
 	mlx_texture_t	*player;
 	mlx_texture_t	*ship;
@@ -34,27 +51,7 @@ typedef struct s_textures
 	mlx_image_t		*ship_load;
 	mlx_image_t		*wall_load;
 	mlx_image_t		*space_load;
-}	t_textures;
-
-typedef struct s_solong
-{
-	void		*mlx_ptr;
-	char		**map;
-	char		*line;
-	char		*str;
-	mlx_image_t	*marshall;
-	int			collectible;
-	int			e;
-	int			c;
-	int			exit;
-	int			player;
-	int			width;
-	int			height;
-	int			x;
-	int			y;
-	t_textures	*texture;
 }	t_solong;
-
 
 bool	check_extension(char *arg);
 char	**ft_split(char const *s, char c);
@@ -67,13 +64,12 @@ void	free_arr(char **split);
 void	ft_exit(char *s);
 void	flood_fill(t_solong *st, int x, int y);
 void	player_pos(t_solong *game);
-void	flood_check(t_solong *game, int	c, int e);
-void	game_init(t_solong *game, t_textures *textures);
+void	flood_check(t_solong *game, int c, int e);
+void	game_init(t_solong *game);
 void	ft_free(t_solong *st);
 void	move_right(t_solong *game);
 void	move_left(t_solong *game);
 void	move_up(t_solong *game);
 void	move_down(t_solong *game);
-void	check_collect(t_solong *game);
 
 #endif
