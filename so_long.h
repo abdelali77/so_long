@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/22 12:54:49 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:06:59 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 typedef struct s_solong
 {
-	void			*mlx_ptr;
+	mlx_t			*mlx_ptr;
 	char			**map;
 	char			*line;
 	char			*str;
@@ -71,5 +71,6 @@ void	move_right(t_solong *game);
 void	move_left(t_solong *game);
 void	move_up(t_solong *game);
 void	move_down(t_solong *game);
+void	_fill_map1(t_solong *game);
 
 #endif
