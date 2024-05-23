@@ -6,79 +6,50 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/22 13:53:05 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/22 20:13:37 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	_fill_map2(t_solong *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'C')
-				mlx_image_to_window(game->mlx_ptr, game->fruit_load,
-					j * 64, i * 64);
-			else if (game->map[i][j] == '0')
-				mlx_image_to_window(game->mlx_ptr, game->space_load, 
-					j * 64, i * 64);
-			else if (game->map[i][j] == 'E')
-			{
-				mlx_image_to_window(game->mlx_ptr, game->ship_load, 
-					j * 64, i * 64);
-				game->ship_x = j * 64;
-				game->ship_y = i * 64;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	_fill_map1(t_solong *game)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (game->map[i])
-	{
-		j = 0;
-		while (game->map[i][j])
-		{
-			if (game->map[i][j] == 'P' || game->map[i][j] == 'C')
-				mlx_image_to_window(game->mlx_ptr, game->space_load,
-					j * 64, i * 64);
-			else
-				mlx_image_to_window(game->mlx_ptr, game->wall_load,
-					j * 64, i * 64);
-			j++;
-		}
-		i++;
-	}
-	_fill_map2(game);
-}
-
 void	textures_to_images(t_solong *game)
 {
-	game->fruit = mlx_load_png("./textures/fruit.png");
-	game->player = mlx_load_png("./textures/marshall.png");
-	game->ship = mlx_load_png("./textures/ship.png");
-	game->wall = mlx_load_png("./textures/wall.png");
-	game->space = mlx_load_png("./textures/space.png");
 	game->fruit_load = mlx_texture_to_image(game->mlx_ptr, game->fruit);
+	if (!game->fruit_load)
+		print_err();
 	game->marshall = mlx_texture_to_image(game->mlx_ptr, game->player);
+	if (!game->marshall)
+		print_err();
 	game->ship_load = mlx_texture_to_image(game->mlx_ptr, game->ship);
+	if (!game->ship_load)
+		print_err();
 	game->wall_load = mlx_texture_to_image(game->mlx_ptr, game->wall);
+	if (!game->wall_load)
+		print_err();
 	game->space_load = mlx_texture_to_image(game->mlx_ptr, game->space);
+	if (!game->space_load)
+		print_err();
 	_fill_map1(game);
+}
+
+void	load_png(t_solong *game)
+{
+	game->fruit = mlx_load_png("./textures/fruit.png");
+	if(!game->fruit)
+		print_err();
+	game->player = mlx_load_png("./textures/marshall.png");
+	if(!game->player)
+		print_err();
+	game->ship = mlx_load_png("./textures/ship.png");
+	if(!game->ship)
+		print_err();
+	game->wall = mlx_load_png("./textures/wall.png");
+	if(!game->wall)
+		print_err();
+	game->space = mlx_load_png("./textures/space.png");
+	if(!game->space)
+		print_err();
+	textures_to_images(game);
 }
 
 void	on_key_press(mlx_key_data_t key, void *param)
@@ -113,7 +84,9 @@ void	game_init(t_solong *game)
 	game->moves = 1;
 	game->mlx_ptr = mlx_init(game->width * 64, game->height * 64,
 			"so_long", true);
-	textures_to_images(game);
+	if (!game->mlx_ptr)
+		print_err();
+	load_png(game);
 	mlx_image_to_window(game->mlx_ptr, game->marshall,
 		game->x * 64, game->y * 64);
 	mlx_key_hook(game->mlx_ptr, &on_key_press, game);
