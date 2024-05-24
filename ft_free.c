@@ -6,36 +6,39 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:48:05 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/18 10:23:32 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/23 19:55:56 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	free_arr(char **split)
+void	free_arr(t_solong *game)
 {
 	int	n;
 
-	if (!split)
+	if (!game->map)
 		return ;
 	n = 0;
-	while (split[n])
+	while (game->map[n])
 	{
-		free(split[n]);
+		free(game->map[n]);
 		n++;
 	}
-	free(split);
+	free(game->map);
 }
 
-void	ft_exit(char *s)
+void	ft_exit(t_solong *game)
 {
 	ft_printf("Error! Map not valid\n");
-	free(s);
+	free(game->str);
+	free(game);
 	exit(1);
 }
 
 void	ft_free(t_solong *st)
 {
-	free_arr(st->map);
+	free_arr(st);
+	free(st->str);
+	free(st);
 	exit(1);
 }
