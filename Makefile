@@ -6,7 +6,7 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/22 20:11:35 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/23 15:41:02 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ YELLOW=\033[1;33m
 NC=\033[0m
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
+HEADER  := so_long.h
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 SRCS	:= so_long.c \
 		   get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
@@ -26,7 +27,8 @@ SRCS	:= so_long.c \
 		   utils.c \
 		   game.c \
 		   directions.c \
-		   fill_map.c 
+		   fill_map.c \
+		   check_map.c 
 
 PRINTF = printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
@@ -36,7 +38,7 @@ all: libmlx $(NAME)
 libmlx:
 	cmake $(LIBMLX) -B $(LIBMLX)/build && make -C $(LIBMLX)/build -j4
 
-%.o: %.c
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS) && printf "Compiling: $(notdir $<)"
 
 $(NAME): $(OBJS)
