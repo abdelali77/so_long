@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/23 19:49:38 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:09:23 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void	move_up(t_solong *game);
 void	move_down(t_solong *game);
 void	_fill_map1(t_solong *game);
 void	check_rect(t_solong *game);
+void	free_textures(t_solong *game);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/24 16:25:45 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/24 22:34:40 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	main(int ac, char **av)
 			print_err(game);
 		read_map(av[1], game);
 		game_init(game);
-		free(game);
+		ft_free(game);
 	}
 	else
 		ft_printf("Usage: ./so_long *.ber\n");
