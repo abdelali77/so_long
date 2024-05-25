@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:48:05 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/23 19:55:56 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/24 21:56:19 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,14 @@ void	ft_free(t_solong *st)
 	free_arr(st);
 	free(st->str);
 	free(st);
-	exit(1);
+}
+
+void	free_textures(t_solong *game)
+{
+	mlx_delete_texture(game->fruit);
+	mlx_delete_texture(game->ship);
+	mlx_delete_texture(game->wall);
+	mlx_delete_texture(game->player);
+	mlx_delete_texture(game->space);
+	mlx_close_window(game->mlx_ptr);
 }

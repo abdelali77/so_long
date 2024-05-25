@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/24 16:30:36 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/24 20:52:39 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,9 @@ void	on_key_press(mlx_key_data_t key, void *param)
 	game = param;
 	if (game->map[game->marshall->instances->y / 64]
 		[game->marshall->instances->x / 64] == 'E' && game->collectible == 0)
-		mlx_close_window(game->mlx_ptr);
+		free_textures(game);
 	if (key.key == MLX_KEY_ESCAPE)
-	{
-		mlx_close_window(game->mlx_ptr);
-		exit(0);
-	}
+		free_textures(game);
 	else if ((key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
 		&& key.action == MLX_PRESS)
 		move_down(game);
