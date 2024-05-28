@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 17:49:38 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/24 21:58:47 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:55:55 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,15 @@ void	player_pos(t_solong *game)
 	}
 }
 
-void	flood_check(t_solong *game, int c, int e)
+void	check_path(t_solong *game, int c, int e)
 {
 	if (c != game->collectible || e != game->exit)
 	{
 		ft_printf("Invalid path!\n");
-		free(game->str);
-		free(game);
+		ft_free(game);
 		exit(1);
 	}
+	free_arr(game);
 }
 
 void	flood_fill(t_solong *game, int x, int y)
