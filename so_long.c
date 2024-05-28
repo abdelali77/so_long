@@ -6,11 +6,23 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/24 22:34:40 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/27 22:42:50 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	vars_init(t_solong *game)
+{
+	game->p = 0;
+	game->e = 0;
+	game->c = 0;
+	game->s = 0;
+	game->exit = 0;
+	game->collectible = 0;
+	game->str = NULL;
+	game->map = NULL;
+}
 
 void	read_map(char *arg, t_solong *game)
 {
@@ -19,8 +31,6 @@ void	read_map(char *arg, t_solong *game)
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
 		print_err(game);
-	game->e = 0;
-	game->c = 0;
 	while (1)
 	{
 		game->line = get_next_line(fd);
@@ -36,21 +46,23 @@ void	read_map(char *arg, t_solong *game)
 		check_rect(game);
 	player_pos(game);
 	flood_fill(game, game->x, game->y);
-	free_arr(game);
-	flood_check(game, game->c, game->e);
+	check_path(game, game->c, game->e);
 	game->map = ft_split(game->str, '\n');
 }
 
-// void leaks(){system("leaks so_long");}
+void leaks(){system("leaks -q so_long");}
 
 int	main(int ac, char **av)
 {
-	// atexit(leaks);
+	atexit(leaks);
 	t_solong	*game;
 
 	if (ac == 2)
 	{
 		game = malloc(sizeof(t_solong));
+		if (!game)
+			return (ft_printf("Error\n"), 1);
+		vars_init(game);
 		if (!check_extension(av[1]))
 			print_err(game);
 		read_map(av[1], game);
