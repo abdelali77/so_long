@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/24 18:37:49 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/27 15:21:05 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ void	textures_to_images(t_solong *game)
 {
 	game->fruit_load = mlx_texture_to_image(game->mlx_ptr, game->fruit);
 	if (!game->fruit_load)
-		print_err(game);
+		textures_err(game);
 	game->marshall = mlx_texture_to_image(game->mlx_ptr, game->player);
 	if (!game->marshall)
-		print_err(game);
+		textures_err(game);
 	game->ship_load = mlx_texture_to_image(game->mlx_ptr, game->ship);
 	if (!game->ship_load)
-		print_err(game);
+		textures_err(game);
 	game->wall_load = mlx_texture_to_image(game->mlx_ptr, game->wall);
 	if (!game->wall_load)
-		print_err(game);
+		textures_err(game);
 	game->space_load = mlx_texture_to_image(game->mlx_ptr, game->space);
 	if (!game->space_load)
-		print_err(game);
+		textures_err(game);
 	game->enemy_load = mlx_texture_to_image(game->mlx_ptr, game->enemy);
 	if (!game->enemy_load)
-		print_err(game);
+		textures_err(game);
 	_fill_map1(game);
 }
 
@@ -39,22 +39,22 @@ void	load_png(t_solong *game)
 {
 	game->fruit = mlx_load_png("./textures/fruit.png");
 	if(!game->fruit)
-		print_err(game);
+		textures_err(game);
 	game->player = mlx_load_png("./textures/marshall.png");
 	if(!game->player)
-		print_err(game);
+		textures_err(game);
 	game->ship = mlx_load_png("./textures/ship.png");
 	if(!game->ship)
-		print_err(game);
+		textures_err(game);
 	game->wall = mlx_load_png("./textures/wall.png");
 	if(!game->wall)
-		print_err(game);
+		textures_err(game);
 	game->space = mlx_load_png("./textures/space.png");
 	if(!game->space)
-		print_err(game);
-	game->enemy = mlx_load_png("./textures/zoro.png");
+		textures_err(game);
+	game->enemy = mlx_load_png("./textures/shanks.png");
 	if (!game->enemy)
-		print_err(game);
+		textures_err(game);
 	textures_to_images(game);
 }
 
@@ -65,12 +65,10 @@ void	on_key_press(mlx_key_data_t key, void *param)
 	game = param;
 	if (game->map[game->marshall->instances->y / 64]
 		[game->marshall->instances->x / 64] == 'E' && game->collectible == 0)
-		mlx_close_window(game->mlx_ptr);
-	if (key.key == MLX_KEY_ESCAPE)
-	{
-		mlx_close_window(game->mlx_ptr);
-		exit(0);
-	}
+		free_textures(game);
+	if (key.key == MLX_KEY_ESCAPE || game->map[game->marshall->instances->y / 64]
+		[game->marshall->instances->x / 64] == 'X')
+		free_textures(game);
 	else if ((key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
 		&& key.action == MLX_PRESS)
 		move_down(game);
@@ -83,6 +81,14 @@ void	on_key_press(mlx_key_data_t key, void *param)
 	else if ((key.key == MLX_KEY_A || key.key == MLX_KEY_LEFT)
 		&& key.action == MLX_PRESS)
 		move_left(game);
+}
+
+void	close_win(void *param)
+{
+	t_solong	*game;
+
+	game = param;
+	free_textures(game);
 }
 
 void	game_init(t_solong *game)
@@ -98,6 +104,8 @@ void	game_init(t_solong *game)
 	if (mlx_image_to_window(game->mlx_ptr, game->marshall,
 		game->x * 64, game->y * 64) < 0)
 		print_err(game);
+	mlx_put_string(game->mlx_ptr, "Moves : ", 3 , 0);
 	mlx_key_hook(game->mlx_ptr, &on_key_press, game);
+	mlx_close_hook(game->mlx_ptr, close_win, game);
 	mlx_loop(game->mlx_ptr);
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors_bonus.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 11:22:21 by abmahfou         ###   ########.fr       */
+/*   Created: 2024/01/15 10:25:28 by abmahfou          #+#    #+#             */
+/*   Updated: 2024/01/29 14:52:07 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long_bonus.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	print_err(t_solong *game)
-{
-	ft_printf("Error\n");
-	free(game);
-	exit(1);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
-void	check_rect(t_solong *game)
-{
-	ft_printf("Error, Map is not surrounded by walls\n");
-	ft_free(game);
-	exit(1);
-}
+# include <stdlib.h>
+# include <unistd.h>
 
-void	empty_map(t_solong *game)
-{
-	ft_printf("Map Empty !!\n");
-	ft_free(game);
-	exit(1);
-}
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+int		found_newline(char *line);
+char	*line_remaining(char *line);
+size_t	ft_strlen(const char *str);
+
+#endif

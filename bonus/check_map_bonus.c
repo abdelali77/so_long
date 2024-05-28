@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/25 10:22:41 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/27 11:23:05 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_len(t_solong *game)
 		if (ft_strlen(game->map[i]) != len)
 		{
 			ft_printf("Error, map is not rectangular\n");
-			free_arr(game);
+			ft_free(game);
 			exit(1);
 		}
 		i++;
@@ -80,15 +80,30 @@ bool	check_walls(char **map)
 	return (true);
 }
 
+void	_extra_check(t_solong *game)
+{
+	int	i;
+
+	i = 0;
+	while (game->str[i])
+	{
+		if (game->str[0] == '\n' || (game->str[i] == '\n'
+				&& game->str[i + 1] == '\n') || game->str[ft_strlen(game->str) - 1] == '\n')
+			ft_exit(game);
+		if (game->str[i] != '1' && game->str[i] != '0' 
+			&& game->str[i] != 'C' && game->str[i] != 'E' 
+			&& game->str[i] != 'P' && game->str[i] != '\n' && game->str[i] != 'X')
+			ft_exit(game);
+		i++;
+	}
+}
+
 void	_check(t_solong *game)
 {
 	int	i;
 
 	if (!game->str)
-		return ;
-	game->collectible = 0;
-	game->exit = 0;
-	game->p = 0;
+		empty_map(game);
 	i = 0;
 	while (game->str[i] != '\0')
 	{
@@ -98,15 +113,14 @@ void	_check(t_solong *game)
 			game->exit++;
 		else if (game->str[i] == 'P')
 			game->p++;
+		else if (game->str[i] == '0')
+			game->s++;
 		else if (game->str[i] == 'X')
 			game->_enemy++;
-		if (game->str[0] == '\n' || (game->str[i] == '\n' && game->str[i + 1] == '\n'))
-			ft_exit(game);
-		else if (game->str[i] != '1' && game->str[i] != '0' && game->str[i] != 'C'
-			&& game->str[i] != 'E' && game->str[i] != 'P' && game->str[i] != '\n' && game->str[i] != 'X')
-			ft_exit(game);
+		_extra_check(game);
 		i++;
 	}
-	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1 && game->_enemy >= 1))
+	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1
+			&& game->s >= 1 && game->_enemy >= 1))
 		ft_exit(game);
 }

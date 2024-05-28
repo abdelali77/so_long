@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:48:05 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/25 10:28:20 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/27 12:31:21 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,48 @@ void	free_arr(t_solong *game)
 	free(game->map);
 }
 
+void	ft_free(t_solong *game)
+{
+	if (game->str != NULL)
+		free(game->str);
+	if (game->map != NULL)
+		free_arr(game);
+	free(game);
+}
+
 void	ft_exit(t_solong *game)
 {
-	ft_printf("Error! Map not valid\n");
-	free(game->str);
-	free(game);
+	ft_printf("map must contain 1 E, at least 1 C, and 1 P\n");
+	ft_free(game);
 	exit(1);
 }
 
-void	ft_free(t_solong *st)
+void	textures_err(t_solong *game)
 {
-	free_arr(st);
-	free(st->str);
-	free(st);
+	ft_printf("Error\n");
+	if (game->fruit != NULL)
+		mlx_delete_texture(game->fruit);
+	if (game->ship != NULL)
+		mlx_delete_texture(game->ship);
+	if (game->wall != NULL)
+		mlx_delete_texture(game->wall);
+	if (game->player != NULL)
+		mlx_delete_texture(game->player);
+	if (game->space != NULL)
+		mlx_delete_texture(game->space);
+	if (game->enemy != NULL)
+		mlx_delete_texture(game->enemy);
+	ft_free(game);
+	exit(1);
+}
+
+void	free_textures(t_solong *game)
+{
+	mlx_delete_texture(game->fruit);
+	mlx_delete_texture(game->ship);
+	mlx_delete_texture(game->wall);
+	mlx_delete_texture(game->player);
+	mlx_delete_texture(game->space);
+	mlx_delete_texture(game->enemy);
+	mlx_close_window(game->mlx_ptr);
 }
