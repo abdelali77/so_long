@@ -6,7 +6,7 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/25 10:32:34 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/27 12:50:29 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ SRCS	:= so_long.c \
 		   check_map.c 
 
 SRCS_BONUS := bonus/so_long_bonus.c \
-			  get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
+			  bonus/get_next_line/get_next_line_bonus.c bonus/get_next_line/get_next_line_utils_bonus.c \
 			  bonus/check_map_bonus.c \
 			  bonus/directions_bonus.c \
 			  bonus/errors_bonus.c \
@@ -42,7 +42,8 @@ SRCS_BONUS := bonus/so_long_bonus.c \
 			  bonus/ft_free_bonus.c \
 			  bonus/ft_split_bonus.c \
 			  bonus/game_bonus.c \
-			  bonus/utils_bonus.c 
+			  bonus/utils_bonus.c \
+			  bonus/ft_itoa_bonus.c 
 
 PRINTF = printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
@@ -69,11 +70,11 @@ $(NAME): $(OBJS)
 	@echo "                                                             "
 
 
-$(BONUS): libmlx $(OBJS_B)
+$(NAME_BONUS): libmlx $(OBJS_B)
 	make -C printf
 	$(CC) $(OBJS_B) $(LIBS) $(PRINTF) $(HEADERS) -o $(NAME_BONUS)
 
-bonus: $(BONUS)
+bonus: $(NAME_BONUS)
 
 clean:
 	make clean -C printf
