@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 11:21:12 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:41:07 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char	**ft_split(char const *s, char c);
 void	check_len(t_solong *game);
 bool	check_walls(char **map);
 void	_check(t_solong *game);
-void	print_err(t_solong *game);
+void	_error(t_solong *game);
 int		arr_len(char **arr);
 void	free_arr(t_solong *game);
 void	ft_exit(t_solong *game);
