@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 22:48:03 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/30 16:45:49 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	read_map(char *arg, t_solong *game)
 
 	fd = open(arg, O_RDONLY);
 	if (fd == -1)
-		print_err(game);
+		_error(game);
 	while (1)
 	{
 		game->line = get_next_line(fd);
@@ -50,11 +50,8 @@ void	read_map(char *arg, t_solong *game)
 	game->map = ft_split(game->str, '\n');
 }
 
-void leaks(){system("leaks -q so_long_bonus");}
-
 int	main(int ac, char **av)
 {
-	atexit(leaks);
 	t_solong	*game;
 
 	if (ac == 2)
@@ -64,7 +61,7 @@ int	main(int ac, char **av)
 			return (ft_printf("Error\n"), 1);
 		vars_init(game);
 		if (!check_extension(av[1]))
-			print_err(game);
+			_error(game);
 		read_map(av[1], game);
 		game_init(game);
 		ft_free(game);

@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 11:23:05 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:15:44 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,13 @@ void	_extra_check(t_solong *game)
 	while (game->str[i])
 	{
 		if (game->str[0] == '\n' || (game->str[i] == '\n'
-				&& game->str[i + 1] == '\n') || game->str[ft_strlen(game->str) - 1] == '\n')
+				&& game->str[i + 1] == '\n')
+			|| game->str[ft_strlen(game->str) - 1] == '\n')
 			ft_exit(game);
 		if (game->str[i] != '1' && game->str[i] != '0' 
 			&& game->str[i] != 'C' && game->str[i] != 'E' 
-			&& game->str[i] != 'P' && game->str[i] != '\n' && game->str[i] != 'X')
+			&& game->str[i] != 'P' && game->str[i] != '\n'
+			&& game->str[i] != 'X')
 			ft_exit(game);
 		i++;
 	}

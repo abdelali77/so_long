@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 15:21:05 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:10:45 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,19 @@ void	textures_to_images(t_solong *game)
 void	load_png(t_solong *game)
 {
 	game->fruit = mlx_load_png("./textures/fruit.png");
-	if(!game->fruit)
+	if (!game->fruit)
 		textures_err(game);
 	game->player = mlx_load_png("./textures/marshall.png");
-	if(!game->player)
+	if (!game->player)
 		textures_err(game);
 	game->ship = mlx_load_png("./textures/ship.png");
-	if(!game->ship)
+	if (!game->ship)
 		textures_err(game);
 	game->wall = mlx_load_png("./textures/wall.png");
-	if(!game->wall)
+	if (!game->wall)
 		textures_err(game);
 	game->space = mlx_load_png("./textures/space.png");
-	if(!game->space)
+	if (!game->space)
 		textures_err(game);
 	game->enemy = mlx_load_png("./textures/shanks.png");
 	if (!game->enemy)
@@ -66,20 +66,21 @@ void	on_key_press(mlx_key_data_t key, void *param)
 	if (game->map[game->marshall->instances->y / 64]
 		[game->marshall->instances->x / 64] == 'E' && game->collectible == 0)
 		free_textures(game);
-	if (key.key == MLX_KEY_ESCAPE || game->map[game->marshall->instances->y / 64]
+	if (key.key == MLX_KEY_ESCAPE
+		||game->map[game->marshall->instances->y / 64]
 		[game->marshall->instances->x / 64] == 'X')
 		free_textures(game);
 	else if ((key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
-		&& key.action == MLX_PRESS)
+		&& (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		move_down(game);
 	else if ((key.key == MLX_KEY_W || key.key == MLX_KEY_UP)
-		&& key.action == MLX_PRESS)
+		&& (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		move_up(game);
 	else if ((key.key == MLX_KEY_D || key.key == MLX_KEY_RIGHT)
-		&& key.action == MLX_PRESS)
+		&& (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		move_right(game);
 	else if ((key.key == MLX_KEY_A || key.key == MLX_KEY_LEFT)
-		&& key.action == MLX_PRESS)
+		&& (key.action == MLX_PRESS || key.action == MLX_REPEAT))
 		move_left(game);
 }
 
@@ -97,15 +98,16 @@ void	game_init(t_solong *game)
 	game->mlx_ptr = mlx_init(game->width * 64, game->height * 64,
 			"so_long", true);
 	if (!game->mlx_ptr)
-		print_err(game);
+		_error(game);
 	load_png(game);
 	mlx_image_to_window(game->mlx_ptr, game->marshall,
 		game->x * 64, game->y * 64);
 	if (mlx_image_to_window(game->mlx_ptr, game->marshall,
-		game->x * 64, game->y * 64) < 0)
-		print_err(game);
-	mlx_put_string(game->mlx_ptr, "Moves : ", 3 , 0);
+			game->x * 64, game->y * 64) < 0)
+		_error(game);
+	mlx_put_string(game->mlx_ptr, "Moves : ", 3, 0);
 	mlx_key_hook(game->mlx_ptr, &on_key_press, game);
+	mlx_loop_hook(game->mlx_ptr, _animate_coin, game);
 	mlx_close_hook(game->mlx_ptr, close_win, game);
 	mlx_loop(game->mlx_ptr);
 }
