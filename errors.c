@@ -6,13 +6,13 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 15:38:47 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:40:40 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_err(t_solong *game)
+void	_error(t_solong *game)
 {
 	ft_printf("Error\n");
 	ft_free(game);

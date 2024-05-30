@@ -6,11 +6,35 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 20:06:16 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/23 12:47:08 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/29 19:14:19 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	_fill_map3(t_solong *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (game->map[i])
+	{
+		j = 0;
+		while (game->map[i][j])
+		{
+			if (game->map[i][j] == 'E')
+			{
+				mlx_image_to_window(game->mlx_ptr, game->ship_load,
+					j * 64, i * 64);
+				game->ship_x = j * 64;
+				game->ship_y = i * 64;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 
 void	_fill_map2(t_solong *game)
 {
@@ -29,17 +53,11 @@ void	_fill_map2(t_solong *game)
 			else if (game->map[i][j] == '0')
 				mlx_image_to_window(game->mlx_ptr, game->space_load, 
 					j * 64, i * 64);
-			else if (game->map[i][j] == 'E')
-			{
-				mlx_image_to_window(game->mlx_ptr, game->ship_load, 
-					j * 64, i * 64);
-				game->ship_x = j * 64;
-				game->ship_y = i * 64;
-			}
 			j++;
 		}
 		i++;
 	}
+	_fill_map3(game);
 }
 
 void	_fill_map1(t_solong *game)
