@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/30 17:10:45 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:52:30 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ void	textures_to_images(t_solong *game)
 	game->enemy_load = mlx_texture_to_image(game->mlx_ptr, game->enemy);
 	if (!game->enemy_load)
 		textures_err(game);
+	game->enemy_load_r = mlx_texture_to_image(game->mlx_ptr, game->enemy_r);
+	if (!game->enemy_load_r)
+		textures_err(game);
 	_fill_map1(game);
 }
 
@@ -52,8 +55,11 @@ void	load_png(t_solong *game)
 	game->space = mlx_load_png("./textures/space.png");
 	if (!game->space)
 		textures_err(game);
-	game->enemy = mlx_load_png("./textures/shanks.png");
+	game->enemy = mlx_load_png("./textures/ss1.png");
 	if (!game->enemy)
+		textures_err(game);
+	game->enemy_r = mlx_load_png("./textures/ss2.png");
+	if (!game->enemy_r)
 		textures_err(game);
 	textures_to_images(game);
 }
@@ -67,7 +73,7 @@ void	on_key_press(mlx_key_data_t key, void *param)
 		[game->marshall->instances->x / 64] == 'E' && game->collectible == 0)
 		free_textures(game);
 	if (key.key == MLX_KEY_ESCAPE
-		||game->map[game->marshall->instances->y / 64]
+		|| game->map[game->marshall->instances->y / 64]
 		[game->marshall->instances->x / 64] == 'X')
 		free_textures(game);
 	else if ((key.key == MLX_KEY_S || key.key == MLX_KEY_DOWN)
@@ -84,14 +90,6 @@ void	on_key_press(mlx_key_data_t key, void *param)
 		move_left(game);
 }
 
-void	close_win(void *param)
-{
-	t_solong	*game;
-
-	game = param;
-	free_textures(game);
-}
-
 void	game_init(t_solong *game)
 {
 	game->moves = 1;
@@ -102,10 +100,8 @@ void	game_init(t_solong *game)
 	load_png(game);
 	mlx_image_to_window(game->mlx_ptr, game->marshall,
 		game->x * 64, game->y * 64);
-	if (mlx_image_to_window(game->mlx_ptr, game->marshall,
-			game->x * 64, game->y * 64) < 0)
-		_error(game);
 	mlx_put_string(game->mlx_ptr, "Moves : ", 3, 0);
+	game->move = mlx_put_string(game->mlx_ptr, "0", 75, 0);
 	mlx_key_hook(game->mlx_ptr, &on_key_press, game);
 	mlx_loop_hook(game->mlx_ptr, _animate_coin, game);
 	mlx_close_hook(game->mlx_ptr, close_win, game);

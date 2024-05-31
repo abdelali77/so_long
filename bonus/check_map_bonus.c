@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/29 19:15:44 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:27:46 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ void	_check(t_solong *game)
 		else if (game->str[i] == '0')
 			game->s++;
 		else if (game->str[i] == 'X')
-			game->_enemy++;
+			game->enemy_count++;
 		_extra_check(game);
 		i++;
 	}
 	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1
-			&& game->s >= 1 && game->_enemy >= 1))
+			&& game->s >= 1 && game->enemy_count >= 1))
 		ft_exit(game);
 }

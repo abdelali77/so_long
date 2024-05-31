@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/30 17:10:42 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:52:54 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,20 @@ typedef struct s_solong
 	int				ship_x;
 	int				ship_y;
 	int				moves;
-	int				_enemy;
+	int				enemy_count;
 	mlx_texture_t	*fruit;
 	mlx_texture_t	*player;
 	mlx_texture_t	*ship;
 	mlx_texture_t	*wall;
 	mlx_texture_t	*space;
 	mlx_texture_t	*enemy;
+	mlx_texture_t	*enemy_r;
 	mlx_image_t		*fruit_load;
 	mlx_image_t		*ship_load;
 	mlx_image_t		*wall_load;
 	mlx_image_t		*space_load;
 	mlx_image_t		*enemy_load;
+	mlx_image_t		*enemy_load_r;
 	mlx_image_t		*move;
 }	t_solong;
 
@@ -81,6 +83,8 @@ void	free_textures(t_solong *game);
 void	textures_err(t_solong *game);
 char	*ft_itoa(int n);
 void	empty_map(t_solong *game);
+void	fill_map(t_solong *game, int flag);
+void	close_win(void *param);
 void	_animate_coin(void *param);
 
 #endif

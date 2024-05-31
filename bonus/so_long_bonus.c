@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/30 16:45:49 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 18:38:52 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	vars_init(t_solong *game)
 	game->s = 0;
 	game->exit = 0;
 	game->collectible = 0;
+	game->enemy_count = 0;
 	game->str = NULL;
 	game->map = NULL;
 }

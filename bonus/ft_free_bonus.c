@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:48:05 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/27 12:31:21 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:55:32 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,20 @@ void	ft_exit(t_solong *game)
 void	textures_err(t_solong *game)
 {
 	ft_printf("Error\n");
-	if (game->fruit != NULL)
+	if (game->fruit)
 		mlx_delete_texture(game->fruit);
-	if (game->ship != NULL)
+	if (game->ship)
 		mlx_delete_texture(game->ship);
-	if (game->wall != NULL)
+	if (game->wall)
 		mlx_delete_texture(game->wall);
-	if (game->player != NULL)
+	if (game->player)
 		mlx_delete_texture(game->player);
-	if (game->space != NULL)
+	if (game->space)
 		mlx_delete_texture(game->space);
-	if (game->enemy != NULL)
+	if (game->enemy)
 		mlx_delete_texture(game->enemy);
+	if (game->enemy_r)
+		mlx_delete_texture(game->enemy_r);
 	ft_free(game);
 	exit(1);
 }
@@ -70,5 +72,6 @@ void	free_textures(t_solong *game)
 	mlx_delete_texture(game->player);
 	mlx_delete_texture(game->space);
 	mlx_delete_texture(game->enemy);
+	mlx_delete_texture(game->enemy_r);
 	mlx_close_window(game->mlx_ptr);
 }
