@@ -6,7 +6,7 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/05/27 12:50:29 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/05/31 16:53:11 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS_BONUS := bonus/so_long_bonus.c \
 			  bonus/ft_split_bonus.c \
 			  bonus/game_bonus.c \
 			  bonus/utils_bonus.c \
-			  bonus/ft_itoa_bonus.c 
+			  bonus/ft_itoa_bonus.c \
+			  bonus/hooks_bonus.c 
 
 PRINTF = printf/libftprintf.a
 OBJS	:= ${SRCS:.c=.o}
