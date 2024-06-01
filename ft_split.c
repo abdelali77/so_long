@@ -6,13 +6,13 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 15:12:36 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/14 15:13:27 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 11:34:38 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static size_t	count_words(char const *s, char c)
+size_t	count_words(char const *s, char c)
 {
 	int	count;
 	int	i;
@@ -35,7 +35,7 @@ static size_t	count_words(char const *s, char c)
 	return (count);
 }
 
-static char	*fill(char const *s, char c)
+char	*fill(char const *s, char c)
 {
 	char	*str;
 	int		i;
