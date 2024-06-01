@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:49:44 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/31 16:52:30 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 10:47:25 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,11 +99,11 @@ void	game_init(t_solong *game)
 		_error(game);
 	load_png(game);
 	mlx_image_to_window(game->mlx_ptr, game->marshall,
-		game->x * 64, game->y * 64);
+		game->pos_x * 64, game->pos_y * 64);
 	mlx_put_string(game->mlx_ptr, "Moves : ", 3, 0);
 	game->move = mlx_put_string(game->mlx_ptr, "0", 75, 0);
 	mlx_key_hook(game->mlx_ptr, &on_key_press, game);
-	mlx_loop_hook(game->mlx_ptr, _animate_coin, game);
+	mlx_loop_hook(game->mlx_ptr, _animate_enemy, game);
 	mlx_close_hook(game->mlx_ptr, close_win, game);
 	mlx_loop(game->mlx_ptr);
 }

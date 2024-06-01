@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/31 15:27:46 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:04:31 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,18 @@
 bool	check_extension(char *arg)
 {
 	int	i;
+	int	len;
 
 	i = 0;
-	while (arg[i] && arg[i] != '.')
+	while (arg[i] && arg[i] != '/')
 		i++;
-	if (i == 0)
-		return (false);
-	i++;
-	if (arg[i] == 'b' && arg[i + 1] == 'e' && arg[i + 2] == 'r')
+	len = ft_strlen(arg) - 4;
+	if (ft_strncmp(&arg[len], ".ber", 4) == 0 && arg[len - 1] != '/')
 		return (true);
-	else
-		return (false);
+	return (false);
 }
 
-void	check_len(t_solong *game)
+void	is_rectangular(t_solong *game)
 {
 	int		i;
 	size_t	len;
@@ -115,14 +113,12 @@ void	_check(t_solong *game)
 			game->exit++;
 		else if (game->str[i] == 'P')
 			game->p++;
-		else if (game->str[i] == '0')
-			game->s++;
 		else if (game->str[i] == 'X')
 			game->enemy_count++;
 		_extra_check(game);
 		i++;
 	}
 	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1
-			&& game->s >= 1 && game->enemy_count >= 1))
+			&& game->enemy_count >= 1))
 		ft_exit(game);
 }

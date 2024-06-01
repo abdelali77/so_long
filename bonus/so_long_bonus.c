@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:07:39 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/31 18:38:52 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:06:19 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 void	vars_init(t_solong *game)
 {
 	game->p = 0;
-	game->e = 0;
-	game->c = 0;
-	game->s = 0;
+	game->exit_count = 0;
+	game->coll_count = 0;
 	game->exit = 0;
 	game->collectible = 0;
 	game->enemy_count = 0;
@@ -42,12 +41,12 @@ void	read_map(char *arg, t_solong *game)
 	}
 	_check(game);
 	game->map = ft_split(game->str, '\n');
-	check_len(game);
+	is_rectangular(game);
 	if (!check_walls(game->map))
-		check_rect(game);
+		wall_err(game);
 	player_pos(game);
-	flood_fill(game, game->x, game->y);
-	check_path(game, game->c, game->e);
+	flood_fill(game, game->pos_x, game->pos_y);
+	check_path(game, game->coll_count, game->exit_count);
 	game->map = ft_split(game->str, '\n');
 }
 

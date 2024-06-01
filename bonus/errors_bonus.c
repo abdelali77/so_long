@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 18:59:55 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/29 17:02:31 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/05/31 22:15:02 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	_error(t_solong *game)
 	exit(1);
 }
 
-void	check_rect(t_solong *game)
+void	wall_err(t_solong *game)
 {
 	ft_printf("Error, Map is not surrounded by walls\n");
 	ft_free(game);

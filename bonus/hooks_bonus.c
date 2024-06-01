@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 16:52:08 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/31 16:52:26 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 13:14:12 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	close_win(void *param)
 	free_textures(game);
 }
 
-void	_animate_coin(void *param)
+void	_animate_enemy(void *param)
 {
 	t_solong	*game;
 	static int	timer;
@@ -28,11 +28,11 @@ void	_animate_coin(void *param)
 	game = param;
 	if (timer == 10)
 		fill_map(game, 1);
-	else if (timer == 30)
+	else if (timer == 50)
 		fill_map(game, 0);
-	else if (timer == 60)
+	else if (timer == 90)
 		fill_map(game, 1);
-	else if (timer == 61)
+	else if (timer == 91)
 		timer = 0;
 	timer++;
 }
