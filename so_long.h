@@ -6,21 +6,19 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 13:00:31 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/05/29 16:41:07 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 12:19:00 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
-# include <math.h>
 # include <stdbool.h>
 # include "./printf/ft_printf.h"
 # include "./get_next_line/get_next_line.h"
-# include "./MLX42/include/MLX42/MLX42.h"
+# include "/Users/abmahfou/MLX42/include/MLX42/MLX42.h"
 
 typedef struct s_solong
 {
@@ -30,15 +28,14 @@ typedef struct s_solong
 	char			*str;
 	mlx_image_t		*marshall;
 	int				collectible;
-	int				e;
-	int				c;
-	int				s;
+	int				exit_count;
+	int				coll_count;
 	int				exit;
 	int				p;
 	int				width;
 	int				height;
-	int				x;
-	int				y;
+	int				pos_x;
+	int				pos_y;
 	int				ship_x;
 	int				ship_y;
 	int				moves;
@@ -55,7 +52,7 @@ typedef struct s_solong
 
 bool	check_extension(char *arg);
 char	**ft_split(char const *s, char c);
-void	check_len(t_solong *game);
+void	is_rectangular(t_solong *game);
 bool	check_walls(char **map);
 void	_check(t_solong *game);
 void	_error(t_solong *game);
@@ -72,9 +69,10 @@ void	move_left(t_solong *game);
 void	move_up(t_solong *game);
 void	move_down(t_solong *game);
 void	_fill_map1(t_solong *game);
-void	check_rect(t_solong *game);
+void	wall_err(t_solong *game);
 void	free_textures(t_solong *game);
 void	textures_err(t_solong *game);
 void	empty_map(t_solong *game);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
