@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/06/01 13:03:30 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 15:02:13 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	_check(t_solong *game)
 	if (!game->str)
 		empty_map(game);
 	i = 0;
-	while (game->str[i] != '\0')
+	while (game->str[i])
 	{
 		if (game->str[i] == 'C')
 			game->collectible++;
@@ -112,9 +112,9 @@ void	_check(t_solong *game)
 			game->exit++;
 		else if (game->str[i] == 'P')
 			game->p++;
-		_extra_check(game);
 		i++;
 	}
+	_extra_check(game);
 	if (!(game->collectible >= 1 && game->exit == 1 && game->p == 1))
 		ft_exit(game);
 }
