@@ -6,7 +6,7 @@
 /*   By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 11:34:07 by abmahfou          #+#    #+#             */
-/*   Updated: 2024/06/01 13:04:31 by abmahfou         ###   ########.fr       */
+/*   Updated: 2024/06/01 14:54:06 by abmahfou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	_check(t_solong *game)
 	if (!game->str)
 		empty_map(game);
 	i = 0;
-	while (game->str[i] != '\0')
+	while (game->str[i])
 	{
 		if (game->str[i] == 'C')
 			game->collectible++;
