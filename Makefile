@@ -6,12 +6,13 @@
 #    By: abmahfou <abmahfou@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/13 12:59:11 by abmahfou          #+#    #+#              #
-#    Updated: 2024/06/02 10:47:10 by abmahfou         ###   ########.fr        #
+#    Updated: 2024/06/04 10:08:43 by abmahfou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	   = so_long
 NAME_BONUS = so_long_bonus
+CC		   = cc
 CFLAGS	   = -Wextra -Wall -Werror -Wunreachable-code -Ofast
 LIBMLX	   = ~/MLX42
 VIVID_RED=\033[38;2;226;3;56m
